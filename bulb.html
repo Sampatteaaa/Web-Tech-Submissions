@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logic Gates Simulator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: auto;
+        }
+
+        h1 {
+            color: #ff8c00;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ff8c00;
+        }
+
+        .container {
+            background: #2c2c2c;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .gate-selector, .inputs, .bulb {
+            margin: 15px 0;
+        }
+
+        select, input[type="checkbox"] {
+            accent-color: #ff8c00;
+            margin: 0 10px;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 5px;
+            background: #3c3c3c;
+            color: #fff;
+            border: 1px solid #ff8c00;
+            cursor: pointer;
+        }
+
+        label {
+            font-size: 1.1em;
+            margin: 0 10px;
+        }
+
+        .bulb img {
+            width: 100px;
+            height: 100px;
+            transition: filter 0.3s;
+        }
+
+        .bulb-on {
+            filter: brightness(1.5) drop-shadow(0 0 20px #e7e6df);
+        }
+
+        .bulb-off {
+            filter: brightness(0.5);
+        }
+
+        button {
+            background: #ff8c00;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 10px;
+        }
+
+        button:hover {
+            background: #e07b00;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .bulb img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Logic Gates Simulator</h1>
+    <div class="container">
+        <div class="gate-selector">
+            <label for="gate">Select Gate:</label>
+            <select id="gate" onchange="updateBulb()">
+                <option value="AND">AND Gate</option>
+                <option value="OR">OR Gate</option>
+            </select>
+        </div>
+        <div class="inputs">
+            <label>Input A: <input type="checkbox" id="inputA" onchange="updateBulb()"></label>
+            <label>Input B: <input type="checkbox" id="inputB" onchange="updateBulb()"></label>
+        </div>
+        <div class="bulb">
+            <img id="bulb" src="bulb-light-svgrepo-com.svg" alt="Bulb" class="bulb-off">
+        </div>
+        <button onclick="resetInputs()">Reset</button>
+    </div>
+
+    <script>
+        function updateBulb() {
+            const gate = document.getElementById('gate').value;
+            const inputA = document.getElementById('inputA').checked;
+            const inputB = document.getElementById('inputB').checked;
+            const bulb = document.getElementById('bulb');
+            
+            let isOn = false;
+            if (gate === 'AND') {
+                isOn = inputA && inputB;
+            } else if (gate === 'OR') {
+                isOn = inputA || inputB;
+            }
+
+            bulb.className = isOn ? 'bulb-on' : 'bulb-off';
+        }
+
+        function resetInputs() {
+            document.getElementById('inputA').checked = false;
+            document.getElementById('inputB').checked = false;
+            document.getElementById('gate').value = 'AND';
+            updateBulb();
+        }
+
+        // Initialize bulb state
+        updateBulb();
+    </script>
+</body>
+</html>
