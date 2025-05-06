@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Events</title>
+    <style>
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        .result {
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .event-section {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript Events</h1>
+        <div class="event-section">
+            <button id="hoverBtn" onmouseover="this.textContent='Mouse Over!'" onmouseout="this.textContent='Click Me'" onclick="document.getElementById('clickResult').textContent='Button Clicked!'">Click Me</button>
+            <div id="clickResult" class="result"></div>
+        </div>
+        <div class="event-section">
+            <select id="dropdown" onchange="document.getElementById('dropdownResult').textContent = `Selected: ${this.value}`" onfocus="this.style.borderColor='#007bff'" onblur="this.style.borderColor='#ccc'">
+                <option value="Option 1">Option 1</option>
+                <option value="Option 2">Option 2</option>
+                <option value="Option 3">Option 3</option>
+            </select>
+            <div id="dropdownResult" class="result"></div>
+        </div>
+        <div class="event-section">
+            <input type="text" id="keyInput" placeholder="Type here" onkeydown="document.getElementById('keyResult').textContent='Key Pressed!'" onkeyup="document.getElementById('keyResult').textContent='Key Released!'">
+            <div id="keyResult" class="result"></div>
+        </div>
+    </div>
+</body>
+</html>
