@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email ID Verification</title>
+</head>
+<body style="display: flex;align-items: center;justify-content: center;flex-direction: column;height: 100vh;">
+    <h2>Email Validation</h2>
+    <form>
+        <label>Enter Email</label>
+        <input type="text" id="txtEmail" /><br><br>
+        <input type="button" name="submit" value="Submit" onclick="checkEmail();" />
+    </form>
+    <script>
+        function checkEmail() {
+            var email = document.getElementById('txtEmail');
+            var filter = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            if (!filter.test(email.value)) {
+                alert('Please provide a valid email address');
+                email.focus;
+                return false;
+            } else {
+                alert('Congratulations!!');
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
